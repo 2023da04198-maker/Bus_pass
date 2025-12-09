@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bus Pass</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+    }
+
+    /* Top Header */
+    .header {
+        background: linear-gradient(to right, #0090d4, #007ac0);
+        padding: 18px;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .header-left {
+        font-size: 20px;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .header-right {
+        display: flex;
+        gap: 15px;
+        font-size: 22px;
+    }
+
+    .title {
+        text-align: center;
+        padding: 10px 0 5px 0;
+        font-size: 20px;
+        font-weight: 600;
+        background: #fff;
+    }
+
+    /* Illustration */
+    .illustration {
+        text-align: center;
+        padding: 20px;
+        background: #ffffff;
+    }
+
+    .illustration p {
+        margin: 0 0 5px 0;
+        font-size: 16px;
+        color: #333;
+    }
+
+    .illustration img {
+        width: 85%;
+        max-width: 420px;
+    }
+
+    /* Date bubble */
+    .date-bubble {
+        margin: 10px auto 0 auto;
+        background: linear-gradient(to bottom, #46b4ff, #026cd4);
+        padding: 10px 25px;
+        color: white;
+        border-radius: 40px;
+        width: fit-content;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    /* Green info section */
+    .info-box {
+        background: linear-gradient(to bottom, #0e8a1a, #046f13);
+        padding: 25px;
+        color: white;
+        border-radius: 10px 10px 0 0;
+        width: 100%;
+        margin-top: 15px;
+    }
+
+    .row {
+        display: flex;
+        flex-direction: column;
+        padding: 7px 0;
+        font-size: 16px;
+    }
+
+    .label {
+        font-weight: 600;
+    }
+@media (max-width: 480px) {
+    .illustration img { width: 95%; }
+    .info-box { padding: 18px; }
+    .row { font-size: 14px; }
+    .header { padding: 14px; }
+}
+</style>
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0090d4" />
+
+  <!-- Apple iOS PWA Support -->
+  <meta name="apple-mobile-web-app-cap
+
+<body>
+
+    <div class="header">
+        <div class="header-left" style="width:100%;"><img src="logo.jpeg" style="width:100%; height:auto; object-fit:contain;"/></div>
+        <div class="header-right">
+        </div>
+    </div>
+
+    <div class="title">Bus Pass</div>
+
+    <div class="illustration">
+        <video src="bus.mp4" autoplay loop muted playsinline style="width:85%; max-width:420px; border-radius:10px;" />
+    </div>
+
+    <div class="date-bubble" id="liveTime">--</div>
+
+    <div class="info-box">
+        <div class="row"><span class="label">Name - </span><span>John Doe</span></div>
+        <div class="row"><span class="label">Employee Id - </span><span>12345678</span></div>
+        <div class="row"><span class="label">Route Name - </span><span>Example Route</span></div>
+        <div class="row"><span class="label">Location - </span><span>Sample Location</span></div>
+        <div class="row"><span class="label">Nodal Point - </span><span>Main Stop</span></div>
+        <div class="row"><span class="label">Trip Type - </span><span>Both</span></div>
+        <div class="row"><span class="label">Shift - </span><span>08:30 - 18:00</span></div>
+        <div class="row"><span class="label">Valid From - </span><span>01-DEC-25</span></div>
+        <div class="row"><span class="label">Valid To - </span><span>29-DEC-25</span></div>
+        <div class="row"><span class="label">Issued On - </span><span>16-NOV-2025</span></div>
+    </div>
+
+<script>
+    function updateTime() {
+        const now = new Date();
+        const formatted = now.toLocaleString("en-GB", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        }).replace(",", "");
+        document.getElementById("liveTime").innerText = formatted;
+    }
+
+    setInterval(updateTime, 1000);
+    updateTime();
+</script>
+
+</body>
+</html>
