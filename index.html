@@ -63,31 +63,40 @@
     }
 
     /* Date bubble */
-    .date-bubble {
-        margin: 10px auto 0 auto;
-        background: linear-gradient(to bottom, #46b4ff, #026cd4);
-        padding: 10px 25px;
-        color: white;
-        border-radius: 40px;
-        width: fit-content;
-        font-size: 18px;
-        font-weight: bold;
-        text-align: center;
-    }
+/* Embedded glowing timer */
+.date-bubble {
+    margin: 0 auto 20px auto;
+    padding: 12px 28px;
+    font-size: 19px;
+    font-weight: bold;
+    width: fit-content;
+    text-align: center;
+
+    background: linear-gradient(to bottom, #6ec8ff, #0073d6);
+    color: white;
+    border-radius: 45px;
+
+    /* Soft glow */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+                0 0 18px rgba(0, 123, 255, 0.7);
+
+    /* Slight border for definition */
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
 
     /* Green info section */
-    .info-box {
-        background: linear-gradient(to bottom, #0e8a1a, #046f13);
-        padding: 25px;
-        color: white;
-        border-radius: 10px 10px 0 0;
-        width: 100%;
-        margin-top: 15px;
-    }
+.info-box {
+    background: linear-gradient(to bottom, #0f991d, #046f13);
+    padding: 30px 25px 25px 25px;
+    color: white;
+    border-radius: 15px 15px 0 0;
+    width: 100%;
+    margin-top: 0;
+}
 
     .row {
         display: flex;
-        flex-direction: column;
         padding: 7px 0;
         font-size: 16px;
     }
@@ -96,10 +105,7 @@
         font-weight: 600;
     }
 @media (max-width: 480px) {
-    .illustration img { width: 95%; }
-    .info-box { padding: 18px; }
-    .row { font-size: 14px; }
-    .header { padding: 14px; }
+    .row { font-size: 10px; }
 }
 </style>
   <!-- PWA Manifest -->
@@ -120,22 +126,22 @@
     <div class="title">Bus Pass</div>
 
     <div class="illustration">
-        <video src="bus.mp4" autoplay loop muted playsinline style="width:95%;" />
+        <video src="bus.mp4" autoplay loop muted playsinline style="width:95%; border:none; outline:none;" />
     </div>
 
     <div class="date-bubble" id="liveTime">--</div>
 
     <div class="info-box">
-        <div class="row"><span class="label">Name - </span><span>John Doe</span></div>
-        <div class="row"><span class="label">Employee Id - </span><span>12345678</span></div>
-        <div class="row"><span class="label">Route Name - </span><span>Example Route</span></div>
-        <div class="row"><span class="label">Location - </span><span>Sample Location</span></div>
-        <div class="row"><span class="label">Nodal Point - </span><span>Main Stop</span></div>
-        <div class="row"><span class="label">Trip Type - </span><span>Both</span></div>
-        <div class="row"><span class="label">Shift - </span><span>08:30 - 18:00</span></div>
-        <div class="row"><span class="label">Valid From - </span><span>01-DEC-25</span></div>
-        <div class="row"><span class="label">Valid To - </span><span>29-DEC-25</span></div>
-        <div class="row"><span class="label">Issued On - </span><span>16-NOV-2025</span></div>
+        <div class="row"><span class="label">Name - </span><span style="display:inline-block; width:10rem;">&emsp;&emsp;&emsp;&emsp;&emsp; Sakshi</span></div>
+        <div class="row"><span class="label">Employee Id - </span><span>&emsp;&emsp;12345678</span></div>
+        <div class="row"><span class="label">Route Name - </span><span>&emsp;&emsp;&nbsp;VASAI</span></div>
+        <div class="row"><span class="label">Location - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;AISEZ</span></div>
+        <div class="row"><span class="label">Nodal Point - </span><span>&emsp;&emsp;&nbsp;Babhola</span></div>
+        <div class="row"><span class="label">Trip Type - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;Both</span></div>
+        <div class="row"><span class="label">Shift - </span><span>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;08:30 - 18:00</span></div>
+        <div class="row"><span class="label">Valid From - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;01-DEC-25</span></div>
+        <div class="row"><span class="label">Valid To - </span><span>&emsp;&emsp;&emsp;&emsp;29-DEC-25</span></div>
+        <div class="row"><span class="label">Issued On - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;16-NOV-2025</span></div>
     </div>
 
 <script>
@@ -158,5 +164,3 @@
 
 </body>
 </html>
-
-
