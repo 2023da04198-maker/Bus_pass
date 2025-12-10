@@ -155,10 +155,25 @@ text-size-adjust: 100% !important; /* Android & general */
 const params = new URLSearchParams(window.location.search);
 const userName = params.get("name") || "--";
 const userEmpId = params.get("empId") || "--";
+    const userShift = params.get("shift") || "--";
+
+function getShiftTime(shiftName) {
+    const shiftMap = {
+        "Shift 1": "08:30 - 18:00",
+        "Shift 2": "10:15 - 19:50",
+        "Shift 3": "12:30 - 22:00"
+    };
+
+    return shiftMap[shiftName] || "--";
+}
+
+const userShiftTime = getShiftTime(userShift);
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("empName").innerText = userName;
     document.getElementById("empIdField").innerText = userEmpId;
+    document.getElementById("shiftField").innerText = userShiftTime;
+
 });
 </script>
 
@@ -169,7 +184,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="row"><span class="label">Location - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;AISEZ</span></div>
         <div class="row"><span class="label">Nodal Point - </span><span>&emsp;&emsp;&nbsp;Babhola</span></div>
         <div class="row"><span class="label">Trip Type - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;Both</span></div>
-        <div class="row"><span class="label">Shift - </span><span>&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;10:15 - 19:50</span></div>
+<div class="row">    <span class="label">Shift - </span>    <span id="shiftField" style="margin-left: 25%;">--</span></div>
         <div class="row"><span class="label">Valid From - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;01-DEC-25</span></div>
         <div class="row"><span class="label">Valid To - </span><span>&emsp;&emsp;&emsp;&emsp;29-DEC-25</span></div>
         <div class="row"><span class="label">Issued On - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;16-NOV-2025</span></div>
@@ -201,6 +216,7 @@ updateTime();
 
 </body>
 </html>
+
 
 
 
