@@ -107,14 +107,14 @@ font-weight: 800;
         display: flex;
         padding: 4px 0;
         font-size: 40px;
-        margin-bottom: 10px;
+        margin-bottom: 7px;
     }
 
     .label {
         font-weight: 600;
     }
 @media (max-width: 480px) {
-    .row { font-size: 10px; }
+    .row { font-size: 20px !important; }
 }
     /* Fix iOS Font Scaling */
 html, body {
@@ -128,7 +128,8 @@ text-size-adjust: 100% !important; /* Android & general */
   <meta name="theme-color" content="#0090d4" />
 
   <!-- Apple iOS PWA Support -->
-  <meta name="apple-mobile-web-app-cap
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
 <body>
 
@@ -198,8 +199,3 @@ updateTime();
 
 </body>
 </html>
-
-
-
-
-
