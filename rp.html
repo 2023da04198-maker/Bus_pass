@@ -116,6 +116,12 @@ font-weight: 800;
 @media (max-width: 480px) {
     .row { font-size: 10px; }
 }
+    /* Fix iOS Font Scaling */
+html, body {
+-webkit-text-size-adjust: 100% !important; /* iOS Safari */
+text-size-adjust: 100% !important; /* Android & general */
+-ms-text-size-adjust: 100% !important; /* Older Windows devices */
+}
 </style>
   <!-- PWA Manifest -->
   <link rel="manifest" href="manifest.json">
@@ -192,6 +198,7 @@ updateTime();
 
 </body>
 </html>
+
 
 
 
