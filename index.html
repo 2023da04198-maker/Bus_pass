@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter Details</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 350px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+        text-align: center;
+    }
+
+    input {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+    }
+
+    button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        background: #0090d4;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Enter Your Details</h2>
+
+    <input type="text" id="userName" placeholder="Enter Name" />
+    <input type="text" id="empId" placeholder="Enter Employee ID" />
+
+    <button onclick="goNext()">Continue</button>
+</div>
+
+<script>
+function goNext() {
+    let name = document.getElementById("userName").value.trim();
+    let empId = document.getElementById("empId").value.trim();
+
+    if (!name || !empId) {
+        alert("Please enter both Name and Employee ID.");
+        return;
+    }
+
+    // Redirect to bus pass page with both parameters
+    window.location.href =
+        "rp.html?name=" + encodeURIComponent(name) +
+        "&empId=" + encodeURIComponent(empId);
+}
+</script>
+
+</body>
+</html>
