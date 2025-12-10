@@ -43,6 +43,11 @@
         font-weight: 600;
         background: #fff;
     }
+.pass-container {
+    width: 100%;
+    max-width: 420px;   /* same as the video max-width */
+    margin: 0 auto;     /* center it */
+}
 
     /* Illustration */
     .illustration {
@@ -52,15 +57,19 @@
     }
 
     .illustration p {
-        margin: 0 0 5px 0;
+        margin: 0 0 0 0;
         font-size: 16px;
         color: #333;
     }
 
     .illustration img {
-        width: 85%;
+        width: 100%;
         max-width: 420px;
     }
+.illustration video {
+    width: 100%;
+    display: block;
+}
 
     /* Date bubble */
 /* Embedded glowing timer */
@@ -69,7 +78,7 @@
     padding: 8px 20px;
     font-size: 14px;
     font-weight: bold;
-    font-weight: 700;
+font-weight: 800;
     width: fit-content;
     text-align: center;
 
@@ -89,17 +98,14 @@
     /* Green info section */
 .info-box {
     background: linear-gradient(to bottom, #0f991d, #046f13);
-    padding: 5px 25px 25px 25px;
+    padding: 0px 25px 25px 25px;
     color: white;
-    border-radius: 15px 15px 0 0;
-    width: 89%;
-    margin-top: 0;
 }
 
     .row {
         display: flex;
-        padding: 5px 0;
-        font-size: 60px;
+        padding: 4px 0;
+        font-size: 26px;
     }
 
     .label {
@@ -125,13 +131,15 @@
     </div>
 
     <div class="title">Bus Pass</div>
-
+<div class="pass-container">
     <div class="illustration">
         <video src="bus.mp4" autoplay loop muted playsinline style="width:100%; border:none; outline:none;" />
     </div>
 
+
+
     <div class="info-box">
-            <div class="date-bubble" id="liveTime">--</div>
+    <div class="date-bubble" id="liveTime">--</div>
         <div class="row"><span class="label">Name - </span><span style="display:inline-block; width:10rem;">&emsp;&emsp;&emsp;&emsp;&emsp; Sakshi</span></div>
         <div class="row"><span class="label">Employee Id - </span><span>&emsp;&emsp;12345678</span></div>
         <div class="row"><span class="label">Route Name - </span><span>&emsp;&emsp;&nbsp;VASAI</span></div>
@@ -142,7 +150,7 @@
         <div class="row"><span class="label">Valid From - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;01-DEC-25</span></div>
         <div class="row"><span class="label">Valid To - </span><span>&emsp;&emsp;&emsp;&emsp;29-DEC-25</span></div>
         <div class="row"><span class="label">Issued On - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;16-NOV-2025</span></div>
-    </div>
+    </div></div>
 
 <script>
     function updateTime() {
@@ -164,19 +172,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
