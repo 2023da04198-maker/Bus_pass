@@ -139,9 +139,21 @@ font-weight: 800;
 
 
     <div class="info-box">
+<script>
+// Read values from URL
+const params = new URLSearchParams(window.location.search);
+const userName = params.get("name") || "--";
+const userEmpId = params.get("empId") || "--";
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("empName").innerText = userName;
+    document.getElementById("empIdField").innerText = userEmpId;
+});
+</script>
+
     <div class="date-bubble" id="liveTime">--</div>
-        <div class="row"><span class="label">Name - </span><span style="display:inline-block; width:10rem;">&emsp;&emsp;&emsp;&emsp;&emsp; Sakshi</span></div>
-        <div class="row"><span class="label">Employee Id - </span><span>&emsp;&emsp;12345678</span></div>
+        <div class="row"><span class="label">Name - </span><span id="empName" style="display:inline-block; width:10rem;">&emsp;&emsp;&emsp;&emsp;&emsp; </span></div>
+        <div class="row"><span class="label">Employee Id - </span><span id="empIdField">&emsp;&emsp;</span></div>
         <div class="row"><span class="label">Route Name - </span><span>&emsp;&emsp;&nbsp;VASAI</span></div>
         <div class="row"><span class="label">Location - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;AISEZ</span></div>
         <div class="row"><span class="label">Nodal Point - </span><span>&emsp;&emsp;&nbsp;Babhola</span></div>
