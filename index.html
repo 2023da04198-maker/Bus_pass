@@ -26,7 +26,7 @@
         text-align: center;
     }
 
-    input {
+    input, select {
         width: 100%;
         padding: 12px;
         font-size: 16px;
@@ -58,6 +58,14 @@
     <input type="text" id="userName" placeholder="Enter Name" />
     <input type="text" id="empId" placeholder="Enter Employee ID" />
 
+    <!-- Shift Dropdown -->
+    <select id="shift">
+        <option value="">Select Shift</option>
+        <option value="Shift 1">08:30-18:00</option>
+        <option value="Shift 2">10:15-19:50</option>
+        <option value="Shift 3">12:30-22:00</option>
+    </select>
+
     <button onclick="goNext()">Continue</button>
 </div>
 
@@ -65,16 +73,18 @@
 function goNext() {
     let name = document.getElementById("userName").value.trim();
     let empId = document.getElementById("empId").value.trim();
+    let shift = document.getElementById("shift").value;
 
-    if (!name || !empId) {
-        alert("Please enter both Name and Employee ID.");
+    if (!name || !empId || !shift) {
+        alert("Please fill all fields including shift.");
         return;
     }
 
-    // Redirect to bus pass page with both parameters
+    // Redirect to bus pass page with all parameters
     window.location.href =
         "rp.html?name=" + encodeURIComponent(name) +
-        "&empId=" + encodeURIComponent(empId);
+        "&empId=" + encodeURIComponent(empId) +
+        "&shift=" + encodeURIComponent(shift);
 }
 </script>
 
