@@ -177,7 +177,8 @@ function getShiftTime(shiftName) {
 
     return routeMap[route] || "--";
 }
-const userRouteTime = getShiftTime(userRoute);
+const userRouteTime = getRoute(userRoute);
+    const userShiftTime = getShiftTime(userShift);
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("empName").innerText = userName;
@@ -227,5 +228,6 @@ updateTime();
 
 </body>
 </html>
+
 
 
