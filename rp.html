@@ -15,7 +15,6 @@
     /* Top Header */
     .header {
         background: linear-gradient(to right, #0090d4, #007ac0);
-        padding: 18px;
         color: white;
         display: flex;
         align-items: center;
@@ -75,8 +74,9 @@
 /* Embedded glowing timer */
 .date-bubble {
     margin: 0 auto 0px auto;
-    padding: 8px 20px;
-    font-size: 14px;
+    margin-bottom: 10px;
+    padding: 12px 18px;
+    font-size: 16px;
     font-weight: bold;
 font-weight: 800;
     width: fit-content;
@@ -85,10 +85,14 @@ font-weight: 800;
     background: linear-gradient(to bottom, #6ec8ff, #0073d6);
     color: white;
     border-radius: 45px;
+text-shadow:
+    0 0 2px rgba(255, 200, 200, 0.5),
+    0 0 4px rgba(255, 180, 180, 0.4),
+    0 0 6px rgba(255, 150, 150, 0.3);
+
 
     /* Soft glow */
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
-                0 0 18px rgba(0, 123, 255, 0.7);
+    box-shadow: 0 0 22px rgba(0, 123, 255, 0.85);
 
     /* Slight border for definition */
     border: 2px solid rgba(255, 255, 255, 0.4);
@@ -105,14 +109,21 @@ font-weight: 800;
     .row {
         display: flex;
         padding: 4px 0;
-        font-size: 26px;
+        font-size: 40px;
+        margin-bottom: 7px;
     }
 
     .label {
-        font-weight: 600;
+        font-weight: 650;
     }
 @media (max-width: 480px) {
-    .row { font-size: 10px; }
+    .row { font-size: 12px !important; }
+}
+    /* Fix iOS Font Scaling */
+html, body {
+-webkit-text-size-adjust: 100% !important; /* iOS Safari */
+text-size-adjust: 100% !important; /* Android & general */
+-ms-text-size-adjust: 100% !important; /* Older Windows devices */
 }
 </style>
   <!-- PWA Manifest -->
@@ -120,7 +131,8 @@ font-weight: 800;
   <meta name="theme-color" content="#0090d4" />
 
   <!-- Apple iOS PWA Support -->
-  <meta name="apple-mobile-web-app-cap
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
 
 <body>
 
@@ -144,31 +156,39 @@ font-weight: 800;
 const params = new URLSearchParams(window.location.search);
 const userName = params.get("name") || "--";
 const userEmpId = params.get("empId") || "--";
-const userShift = params.get("shift") || "--"; 
-const userRoute = params.get("route") || "--";
+    const userShift = params.get("shift") || "--";
 
+function getShiftTime(shiftName) {
+    const shiftMap = {
+        "Shift 1": "08:30 - 18:00",
+        "Shift 2": "10:15 - 19:50",
+        "Shift 3": "12:30 - 22:00"
+    };
+
+    return shiftMap[shiftName] || "--";
+}
+
+const userShiftTime = getShiftTime(userShift);
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("empName").innerText = userName;
     document.getElementById("empIdField").innerText = userEmpId;
-document.getElementById("shiftField").innerText = userShiftTime;
-document.getElementById("userRoute").innerText = userRoute;
-
+    document.getElementById("shiftField").innerText = userShiftTime;
 
 });
 </script>
 
     <div class="date-bubble" id="liveTime">--</div>
-        <div class="row"><span class="label">Name - </span><span id="empName" style="display:inline-block;margin-left: 35%; ">&emsp;&emsp;&emsp;&emsp;&emsp; </span></div>
-        <div class="row"><span class="label">Employee Id - </span><span id="empIdField" style="margin-left: 13%;">&emsp;&emsp;</span></div>
-        <div class="row"><span class="label">Route Name - </span><span id="userRoute" style="margin-left: 13%;></span></div>
+        <div class="row"><span class="label">Name - </span><span id="empName" style="display:inline-block;margin-left: 18%; ">&emsp;&emsp;&emsp;&emsp;&emsp; </span></div>
+        <div class="row"><span class="label">Employee Id - </span><span id="empIdField" style="margin-left: 6.5%;">&emsp;&emsp;</span></div>
+        <div class="row"><span class="label">Route Name - </span><span>&emsp;&emsp;VASAI</span></div>
         <div class="row"><span class="label">Location - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;&nbsp;AISEZ</span></div>
         <div class="row"><span class="label">Nodal Point - </span><span>&emsp;&emsp;&nbsp;Babhola</span></div>
         <div class="row"><span class="label">Trip Type - </span><span>&emsp;&emsp;&emsp;&nbsp;&nbsp;Both</span></div>
-<div class="row">    <span class="label">Shift - </span>    <span id="shiftField" style="margin-left: 25%;">--</span></div>
+<div class="row">    <span class="label">Shift - </span>    <span id="shiftField" style="margin-left: 19%;">--</span></div>
         <div class="row"><span class="label">Valid From - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;01-DEC-25</span></div>
         <div class="row"><span class="label">Valid To - </span><span>&emsp;&emsp;&emsp;&emsp;29-DEC-25</span></div>
-        <div class="row"><span class="label">Issued On - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;16-NOV-2025</span></div>
+        <div class="row"><span class="label">Issued On - </span><span>&emsp;&emsp;&nbsp;&nbsp;&nbsp;16-11-2025</span></div>
     </div></div>
 <script>
 function updateTime() {
