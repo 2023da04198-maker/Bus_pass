@@ -66,6 +66,13 @@
         <option value="Shift 3">12:30-22:00</option>
     </select>
 
+    <!-- Route Dropdown -->
+    <select id="route">
+        <option value="">Select Route</option>
+        <option value="Shift 1">VASAI</option>
+        <option value="Shift 2">BANDRA</option>
+    </select>
+
     <button onclick="goNext()">Continue</button>
 </div>
 
@@ -74,6 +81,7 @@ function goNext() {
     let name = document.getElementById("userName").value.trim();
     let empId = document.getElementById("empId").value.trim();
     let shift = document.getElementById("shift").value;
+    let route = document.getElementById("route").value;
 
     if (!name || !empId || !shift) {
         alert("Please fill all fields including shift.");
@@ -84,7 +92,8 @@ function goNext() {
     window.location.href =
         "rp.html?name=" + encodeURIComponent(name) +
         "&empId=" + encodeURIComponent(empId) +
-        "&shift=" + encodeURIComponent(shift);
+        "&shift=" + encodeURIComponent(shift) +
+	 "&route=" + encodeURIComponent(route);
 }
 </script>
 
