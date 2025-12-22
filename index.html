@@ -73,6 +73,13 @@
         <option value="Route 2">BANDRA</option>
     </select>
 
+	    <!-- Nodal Dropdown -->
+    <select id="node">
+        <option value="">Select Nodal Point</option>
+        <option value="Node 1">Bhabola</option>
+        <option value="Node 2">Bahar Cinema(Near Sagar Hotel)</option>
+    </select>
+	
     <button onclick="goNext()">Continue</button>
 </div>
 
@@ -82,7 +89,9 @@ function goNext() {
     let empId = document.getElementById("empId").value.trim();
     let shift = document.getElementById("shift").value;
     let route = document.getElementById("route").value;
+    let node = document.getElementById("node").value;
 
+	
     if (!name || !empId || !shift) {
         alert("Please fill all fields including shift.");
         return;
@@ -93,7 +102,8 @@ function goNext() {
         "rp.html?name=" + encodeURIComponent(name) +
         "&empId=" + encodeURIComponent(empId) +
         "&shift=" + encodeURIComponent(shift) +
-	 "&route=" + encodeURIComponent(route);
+	 "&route=" + encodeURIComponent(route)+
+			 "&node=" + encodeURIComponent(node);
 }
 </script>
 
