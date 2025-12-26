@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Bus Pass</title>
+
+<!-- 🔐 SESSION CHECK (block direct access) -->
+<script>
+    if (sessionStorage.getItem("authenticated") !== "true") {
+        window.location.replace("index.html");
+    }
+</script>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #ffffff;
+    }
+
+    .header {
+        background: linear-gradient(to right, #0090d4, #007ac0);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .title {
+        text-align: center;
+        padding: 10px 0 0 0;
+        font-size: 20px;
+        font-weight: 600;
+        background: #fff;
+    }
+
+.pass-container {
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+.illustration video {
+    width: 100%;
+    display: block;
+}
+
+.date-bubble {
+    margin: 0 auto 10px auto;
+    padding: 11px 17px;
+    font-size: 17px;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #6ec8ff, #0073d6);
+    color: white;
+    border-radius: 45px;
+    width: fit-content;
+    box-shadow: 0 0 22px rgba(0, 123, 255, 0.85);
+}
+
+.info-box {
+    background: linear-gradient(to bottom, #0fa82b, #04791b);
+    padding: 0px 25px 25px 25px;
+    color: white;
+}
+
+.row {
+    display: flex;
+    padding: 4px 0;
+    font-size: 45px;
+    margin-bottom: 7px;
+}
+
+.label {
+    font-weight: 650;
+}
+
+@media (max-width: 480px) {
+    .row { font-size: 12px !important; }
+}
+
+html, body {
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+}
+</style>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#0090d4">
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+</head>
+
+<body>
+
+<div class="header">
+    <div style="width:100%;">
+        <img src="logo.jpeg" style="width:100%; height:auto; object-fit:contain;">
+    </div>
+</div>
+
+<div class="title">Bus Pass</div>
+
+<div class="pass-container">
+    <div class="illustration">
+        <video src="bus.mp4" autoplay loop muted playsinline></video>
+    </div>
+
+    <div class="info-box">
+
+<script>
+/* ✅ READ DATA FROM SESSION STORAGE */
+const userName  = sessionStorage.getItem("name")   || "--";
+const userEmpId = sessionStorage.getItem("empId")  || "--";
+const userShift = sessionStorage.getItem("shift")  || "--";
+const userRoute = sessionStorage.getItem("route")  || "--";
+const userNode  = sessionStorage.getItem("node")   || "--";
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("empName").innerText     = userName;
+    document.getElementById("empIdField").innerText = userEmpId;
+    document.getElementById("shiftField").innerText = userShift;
+    document.getElementById("routeField").innerText = userRoute;
+    document.getElementById("nodeField").innerText  = userNode;
+});
+</script>
+
+        <div class="date-bubble" id="liveTime">--</div>
+
+        <div class="row"><span class="label">Name - </span><span id="empName" style="margin-left:17.5%"></span></div>
+        <div class="row"><span class="label">Employee Id - </span><span id="empIdField" style="margin-left:6.5%"></span></div>
+        <div class="row"><span class="label">Route Name - </span><span id="routeField" style="margin-left:6.5%"></span></div>
+        <div class="row"><span class="label">Location - </span><span>&nbsp;&nbsp;ASEZ</span></div>
+        <div class="row"><span class="label">Nodal Point - </span><span id="nodeField" style="margin-left:7.5%"></span></div>
+        <div class="row"><span class="label">Trip Type - </span><span>&nbsp;Both</span></div>
+        <div class="row"><span class="label">Shift - </span><span id="shiftField" style="margin-left:19%"></span></div>
+        <div class="row"><span class="label">Valid From - </span><span>&nbsp;01-DEC-25</span></div>
+        <div class="row"><span class="label">Valid To - </span><span>&nbsp;31-DEC-25</span></div>
+        <div class="row"><span class="label">Issued On - </span><span>&nbsp;16-11-2025</span></div>
+
+    </div>
+</div>
+
+<script>
+function updateTime() {
+    const now = new Date();
+    const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    const formatted =
+        String(now.getDate()).padStart(2,"0") + "-" +
+        months[now.getMonth()] + "-" +
+        now.getFullYear() + " " +
+        String(now.getHours()).padStart(2,"0") + ":" +
+        String(now.getMinutes()).padStart(2,"0") + ":" +
+        String(now.getSeconds()).padStart(2,"0");
+
+    document.getElementById("liveTime").innerText = formatted;
+}
+
+setInterval(updateTime, 1000);
+updateTime();
+</script>
+
+</body>
+</html>
