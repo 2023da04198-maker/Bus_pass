@@ -58,7 +58,11 @@ body {
 #hamburger.menu-open div:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
 }
-
+#hamburger.menu-open {
+    left: 60%;
+    right: auto;
+    transform: translateX(-50%);
+}
 /* SIDE MENU */
 #sideMenu {
     height: 100%;
@@ -80,7 +84,7 @@ body {
     background-color: #cce6ff; /* light blue */
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
     border-bottom: 1px solid rgba(255,255,255,0.2);
 }
 #sideMenuTop input {
@@ -189,9 +193,10 @@ html, body {
 <div id="sideMenu">
 <!-- Top section with dynamic fields -->
 <div id="sideMenuTop">
-    <input type="text" id="menuEmpId" placeholder="Employee ID" readonly />
-    <input type="text" id="menuEmpName" placeholder="Employee Name" readonly />
+    <p id="menuEmpId">Employee ID</p>
+    <p id="menuEmpName">Employee Name</p>
 </div>
+
 
 
     <a href="first.html">Home</a>
