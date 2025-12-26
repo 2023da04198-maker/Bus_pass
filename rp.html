@@ -31,7 +31,7 @@ body {
 /* HAMBURGER */
 #hamburger {
     position: fixed;
-    top: 20px;
+    top: 15px;
     left: 12.5px;
     z-index: 1001;
     cursor: pointer;
@@ -41,8 +41,8 @@ body {
     align-items: center;
 }
 #hamburger div {
-    width: 20px;      /* reduced width */
-    height: 6px;      /* thicker bars */
+    width: 12px;      /* reduced width */
+    height: 2px;      /* thicker bars */
     background: white;
     margin: 1.5px 0;  /* reduced spacing */
     transition: 0.4s;
@@ -70,7 +70,7 @@ body {
     background-color: #005fa0; /* darker blue */
     overflow-x: hidden;
     transition: 0.3s;
-    padding-top: 60px;
+    padding-top: 85px;
     display: flex;
     flex-direction: column;
 }
@@ -90,13 +90,15 @@ body {
     border: 1px solid #0073d6;
     font-size: 14px;
     outline: none;
+    background: #e6f2ff;
 }
+
 
 /* Side menu links */
 #sideMenu a {
-    padding: 10px 30px;
+    padding: 8px 30px;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 16px;
     color: #fff;
     display: block;
     transition: 0.3s;
@@ -188,11 +190,12 @@ html, body {
 
 <!-- Side Menu -->
 <div id="sideMenu">
-    <!-- Top section with 2 fields -->
-    <div id="sideMenuTop">
-        <input type="text" placeholder="Field 1" />
-        <input type="text" placeholder="Field 2" />
-    </div>
+<!-- Top section with dynamic fields -->
+<div id="sideMenuTop">
+    <input type="text" id="menuEmpId" placeholder="Employee ID" readonly />
+    <input type="text" id="menuEmpName" placeholder="Employee Name" readonly />
+</div>
+
 
     <a href="first.html">Home</a>
     <a href="#">Profile</a>
@@ -242,6 +245,7 @@ const userEmpId = sessionStorage.getItem("empId")  || "--";
 const userShift = sessionStorage.getItem("shift")  || "--";
 const userRoute = sessionStorage.getItem("route")  || "--";
 const userNode  = sessionStorage.getItem("node")   || "--";
+    
 
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("empName").innerText     = userName;
@@ -249,6 +253,11 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("shiftField").innerText = userShift;
     document.getElementById("routeField").innerText = userRoute;
     document.getElementById("nodeField").innerText  = userNode;
+        // Fill side menu top fields dynamically
+    const empIdField = document.getElementById("menuEmpId");
+    const empNameField = document.getElementById("menuEmpName");
+    if(empIdField) empIdField.value = userEmpId;
+    if(empNameField) empNameField.value = userName;
 });
 
 /* LIVE TIME */
