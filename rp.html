@@ -52,33 +52,19 @@
     font-size: 19px;
     font-weight: 800;
     background: linear-gradient(to bottom, #6ec8ff, #0073d6);
+    color: white;
     border-radius: 45px;
     width: fit-content;
 
-    /* blue outer glow */
+    /* existing blue glow */
     box-shadow: 0 0 22px rgba(0, 123, 255, 0.85);
 
-    /* center text */
-    text-align: center;
-}
-
-/* 🔴 light-red gradient text */
-.date-text {
-    background: linear-gradient(
-        to bottom,
-        #ffe1e1,   /* very light red top */
-        #ffb3b3,   /* soft mid red */
-        #ff6f6f    /* deeper red bottom */
-    );
-
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-
-    /* subtle red outer highlight */
+    /* 🔴 stronger but smooth red text glow */
     text-shadow:
-        0 0 2px rgba(255, 120, 120, 0.6),
-        0 0 4px rgba(255, 120, 120, 0.4);
+        0 0 3px rgba(255, 120, 120, 0.85),
+        0 0 6px rgba(255, 120, 120, 0.65),
+        0 0 10px rgba(255, 120, 120, 0.45),
+        0 0 14px rgba(255, 120, 120, 0.30);
 }
 
 
@@ -151,8 +137,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
-        <div class="date-bubble" id="liveTime">--</div>
-        <span class="date-text"></span></div>
+        <div class="date-bubble" id="liveTime">
         <div class="row"><span class="label">Name - </span><span id="empName" style="margin-left:17.5%"></span></div>
         <div class="row"><span class="label">Employee Id - </span><span id="empIdField" style="margin-left:6.5%"></span></div>
         <div class="row"><span class="label">Route Name - </span><span id="routeField" style="margin-left:6.75%"></span></div>
@@ -165,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="row"><span class="label">Issued On - </span><span style="margin-left:10.75%">16-11-2025</span></div>
 
     </div>
-
+</div>
 
 <script>
 function updateTime() {
