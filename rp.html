@@ -52,19 +52,35 @@
     font-size: 19px;
     font-weight: 800;
     background: linear-gradient(to bottom, #6ec8ff, #0073d6);
-    color: white;
     border-radius: 45px;
     width: fit-content;
 
-    /* existing blue glow */
+    /* blue outer glow */
     box-shadow: 0 0 22px rgba(0, 123, 255, 0.85);
 
-    /* 🔴 light red outer highlight on text */
-    text-shadow:
-        0 0 2px rgba(255, 120, 120, 0.7),
-        0 0 4px rgba(255, 120, 120, 0.5),
-        0 0 6px rgba(255, 120, 120, 0.35);
+    /* center text */
+    text-align: center;
 }
+
+/* 🔴 light-red gradient text */
+.date-text {
+    background: linear-gradient(
+        to bottom,
+        #ffe1e1,   /* very light red top */
+        #ffb3b3,   /* soft mid red */
+        #ff6f6f    /* deeper red bottom */
+    );
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+
+    /* subtle red outer highlight */
+    text-shadow:
+        0 0 2px rgba(255, 120, 120, 0.6),
+        0 0 4px rgba(255, 120, 120, 0.4);
+}
+
 
 
 .info-box {
