@@ -251,8 +251,9 @@ document.addEventListener("DOMContentLoaded", () => {
         // Fill side menu top fields dynamically
     const empIdField = document.getElementById("menuEmpId");
     const empNameField = document.getElementById("menuEmpName");
-    if(empIdField) empIdField.value = userEmpId;
-    if(empNameField) empNameField.value = userName;
+    if (empIdField) empIdField.innerText = userEmpId;
+if (empNameField) empNameField.innerText = userName;
+
 });
 
 /* LIVE TIME */
