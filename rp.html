@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Bus Pass</title>
 
-<!-- 🔐 SESSION CHECK (block direct access) -->
+<!-- 🔐 SESSION CHECK -->
 <script>
     if (sessionStorage.getItem("authenticated") !== "true") {
         window.location.replace("index.html");
@@ -13,62 +13,105 @@
 </script>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #ffffff;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #ffffff;
+}
 
-    .header {
-        /* background: linear-gradient(to right, #0090d4, #007ac0); */
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
+/* HEADER */
+.header {
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
 
-    .title {
-        text-align: center;
-        padding: 10px 0 0 0;
-        font-size: 20px;
-        font-weight: 600;
-        background: #fff;
-    }
+/* HAMBURGER */
+#hamburger {
+    position: fixed;
+    top: 38px;
+    left: 25px;
+    z-index: 1001;
+    cursor: pointer;
+}
+#hamburger div {
+    width: 25px;
+    height: 4px;
+    background: white;
+    margin: 5px 0;
+    transition: 0.3s;
+}
 
+/* SIDE MENU */
+#sideMenu {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    background-color: #0073d6;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+#sideMenu a {
+    padding: 10px 30px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+#sideMenu a:hover {
+    background-color: rgba(255,255,255,0.1);
+    color: #ffe5e5;
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    padding: 10px 0 0 0;
+    font-size: 20px;
+    font-weight: 600;
+    background: #fff;
+}
+
+/* PASS CONTAINER */
 .pass-container {
     width: 100%;
     max-width: 420px;
     margin: 0 auto;
 }
-
 .illustration video {
     width: 100%;
     display: block;
 }
 
+/* DATE BUBBLE */
 .date-bubble {
     margin: 0 auto 10px auto;
     padding: 10px 16px;
     font-size: 19px;
     font-weight: 800;
     background: linear-gradient(to bottom, #6ec8ff, #0073d6);
-    color: #fff0f0;
+    color: #fff0f0; 
     border-radius: 45px;
     width: fit-content;
-
-    /* existing blue glow */
     box-shadow: 0 0 22px rgba(0, 123, 255, 0.85);
-
-    /* 🔴 stronger but smooth red text glow */
     text-shadow:
         0 0 3px rgba(255, 120, 120, 0.85),
         0 0 6px rgba(255, 120, 120, 0.65),
         0 0 10px rgba(255, 120, 120, 0.45),
         0 0 14px rgba(255, 120, 120, 0.30);
+    text-align: center;
 }
 
-
-
+/* INFO BOX */
 .info-box {
     background: linear-gradient(to bottom, #0fa82b, #04791b);
     padding: 0px 25px 25px 25px;
@@ -81,11 +124,9 @@
     font-size: 60px;
     margin-bottom: 6.5px;
 }
-
 .label {
     font-weight: 700;
 }
-
 @media (max-width: 480px) {
     .row { font-size: 12px !important; }
 }
@@ -100,11 +141,31 @@ html, body {
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0090d4">
 <meta name="apple-mobile-web-app-capable" content="yes">
-
 </head>
 
 <body>
 
+<!-- Hamburger -->
+<div id="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+</div>
+
+<!-- Side Menu -->
+<div id="sideMenu">
+    <a href="first.html">Home</a>
+    <a href="#">Profile</a>
+    <a href="#">View Roster</a>
+    <a href="#">Bus Pass Booking</a>
+    <a href="#">Bus Pass History</a>
+<a href="#">Request For New Route</a>
+    <a href="#">Rate Us</a>
+<a href="#">Terms and Conditions</a>
+    <a href="#">Change Password</a>
+</div>
+
+<!-- Header -->
 <div class="header">
     <div style="width:100%;">
         <img src="logo.jpeg" style="width:100%; height:auto; object-fit:contain;">
@@ -119,6 +180,20 @@ html, body {
     </div>
 
     <div class="info-box">
+        <div class="date-bubble" id="liveTime">--</div>
+            
+        <div class="row"><span class="label">Name - </span><span id="empName" style="margin-left:17.5%"></span></div>
+        <div class="row"><span class="label">Employee Id - </span><span id="empIdField" style="margin-left:6.5%"></span></div>
+        <div class="row"><span class="label">Route Name - </span><span id="routeField" style="margin-left:6.75%"></span></div>
+        <div class="row"><span class="label">Location - </span><span style="margin-left:12.75%">ASEZ</span></div>
+        <div class="row"><span class="label">Nodal Point - </span><span id="nodeField" style="margin-left:8%"></span></div>
+        <div class="row"><span class="label">Trip Type - </span><span style="margin-left:12.25%">Both</span></div>
+        <div class="row"><span class="label">Shift - </span><span id="shiftField" style="margin-left:19.75%"></span></div>
+        <div class="row"><span class="label">Valid From - </span><span style="margin-left:9.75%">01-DEC-25</span></div>
+        <div class="row"><span class="label">Valid To - </span><span style="margin-left:14.75%">31-DEC-25</span></div>
+        <div class="row"><span class="label">Issued On - </span><span style="margin-left:10.75%">16-11-2025</span></div>
+    </div>
+</div>
 
 <script>
 /* ✅ READ DATA FROM SESSION STORAGE */
@@ -135,25 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("routeField").innerText = userRoute;
     document.getElementById("nodeField").innerText  = userNode;
 });
-</script>
 
-        <div class="date-bubble" id="liveTime">--</div>
-            
-        <div class="row"><span class="label">Name - </span><span id="empName" style="margin-left:17.5%"></span></div>
-        <div class="row"><span class="label">Employee Id - </span><span id="empIdField" style="margin-left:6.5%"></span></div>
-        <div class="row"><span class="label">Route Name - </span><span id="routeField" style="margin-left:6.75%"></span></div>
-        <div class="row"><span class="label">Location - </span><span style="margin-left:12.75%">ASEZ</span></div>
-        <div class="row"><span class="label">Nodal Point - </span><span id="nodeField" style="margin-left:8%"></span></div>
-        <div class="row"><span class="label">Trip Type - </span><span style="margin-left:12.25%">Both</span></div>
-        <div class="row"><span class="label">Shift - </span><span id="shiftField" style="margin-left:19.75%"></span></div>
-        <div class="row"><span class="label">Valid From - </span><span style="margin-left:9.75%">01-DEC-25</span></div>
-        <div class="row"><span class="label">Valid To - </span><span style="margin-left:14.75%">31-DEC-25</span></div>
-        <div class="row"><span class="label">Issued On - </span><span style="margin-left:10.75%">16-11-2025</span></div>
-
-    </div>
-</div>
-
-<script>
+/* LIVE TIME */
 function updateTime() {
     const now = new Date();
     const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -167,9 +225,23 @@ function updateTime() {
 
     document.getElementById("liveTime").innerText = formatted;
 }
-
 setInterval(updateTime, 1000);
 updateTime();
+
+/* MENU TOGGLE */
+function toggleMenu() {
+    const menu = document.getElementById("sideMenu");
+    if (menu.style.width === "250px") {
+        menu.style.width = "0";
+    } else {
+        menu.style.width = "250px";
+    }
+}
+
+/* LOGOUT */
+function logout() {
+    sessionStorage.clear();
+}
 </script>
 
 </body>
