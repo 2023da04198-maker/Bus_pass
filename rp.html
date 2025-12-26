@@ -46,25 +46,27 @@
     display: block;
 }
 
-.date-text {
-    background: linear-gradient(
-        to bottom,
-        #ffe1e1,   /* top light red */
-        #ffb3b3,   /* mid red */
-        #ff6f6f    /* bottom deeper red */
-    );
+.date-bubble {
+    margin: 0 auto 10px auto;
+    padding: 10px 16px;
+    font-size: 19px;
+    font-weight: 800;
+    background: linear-gradient(to bottom, #6ec8ff, #0073d6);
+    color: white;
+    border-radius: 45px;
+    width: fit-content;
 
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    /* existing blue glow */
+    box-shadow: 0 0 22px rgba(0, 123, 255, 0.85);
 
-    /* stronger, darker red glow */
+    /* 🔴 stronger but smooth red text glow */
     text-shadow:
-        0 0 4px rgba(200, 50, 50, 0.95),
-        0 0 8px rgba(200, 50, 50, 0.75),
-        0 0 12px rgba(200, 50, 50, 0.55),
-        0 0 18px rgba(200, 50, 50, 0.40);
+        0 0 3px rgba(255, 120, 120, 0.85),
+        0 0 6px rgba(255, 120, 120, 0.65),
+        0 0 10px rgba(255, 120, 120, 0.45),
+        0 0 14px rgba(255, 120, 120, 0.30);
 }
+
 
 
 .info-box {
