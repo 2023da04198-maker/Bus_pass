@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enter Details</title>
+
+<!-- 🔐 SESSION CHECK -->
+<script>
+    if (sessionStorage.getItem("authenticated") !== "true") {
+        window.location.replace("index.html");
+    }
+</script>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f2f2;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .box {
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        width: 90%;
+        max-width: 350px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+        text-align: center;
+    }
+
+    input, select {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #aaa;
+    }
+
+    button {
+        margin-top: 15px;
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        border: none;
+        background: #0090d4;
+        color: white;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h2>Enter Your Details</h2>
+
+    <input type="text" id="userName" placeholder="Enter Name" />
+    <input type="text" id="empId" placeholder="Enter Employee ID" />
+
+    <select id="shift">
+        <option value="">Select Shift</option>
+        <option value="08:30-18:00">08:30 - 18:00</option>
+        <option value="10:15-19:50">10:15 - 19:50</option>
+        <option value="12:30-22:00">12:30 - 22:00</option>
+    </select>
+
+    <select id="route">
+        <option value="">Select Route</option>
+        <option value="VASAI">VASAI</option>
+        <option value="BANDRA">BANDRA</option>
+    </select>
+
+    <select id="node">
+        <option value="">Select Nodal Point</option>
+        <option value="Bhabola">Bhabola</option>
+        <option value="Bahar Cinema">Bahar Cinema (Near Sagar Hotel)</option>
+    </select>
+
+    <button onclick="goNext()">Continue</button>
+</div>
+
+<script>
+function goNext() {
+    const name  = document.getElementById("userName").value.trim();
+    const empId = document.getElementById("empId").value.trim();
+    const shift = document.getElementById("shift").value;
+    const route = document.getElementById("route").value;
+    const node  = document.getElementById("node").value;
+
+    if (!name || !empId || !shift || !route || !node) {
+        alert("Please fill all fields");
+        return;
+    }
+
+    // ✅ Store in sessionStorage
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("empId", empId);
+    sessionStorage.setItem("shift", shift);
+    sessionStorage.setItem("route", route);
+    sessionStorage.setItem("node", node);
+
+    // ➡️ Go to bus pass page
+    window.location.href = "rp.html";
+}
+</script>
+
+</body>
+</html>
