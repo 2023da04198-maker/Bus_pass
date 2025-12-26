@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Password Check</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+        input {
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 8px 15px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Enter Password</h2>
+
+<form onsubmit="checkPassword(); return false;">
+    <input type="password" id="password" placeholder="Password" autofocus>
+    <br><br>
+    <button type="submit">Submit</button>
+</form>
+
+<p id="error"></p>
+
+<script>
+    // SHA-256 hash of the correct password
+    const storedHash =
+        "89e01536ac207279409d4de1e5253e01f4a1769e696db0d6062ca9b8f56767c8";
+
+    async function sha256(text) {
+        const data = new TextEncoder().encode(text);
+        const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+        return Array.from(new Uint8Array(hashBuffer))
+            .map(b => b.toString(16).padStart(2, "0"))
+            .join("");
+    }
+
+    async function checkPassword() {
+        const input = document.getElementById("password").value;
+        const hash = await sha256(input);
+
+        if (hash === storedHash) {
+            // create session
+            sessionStorage.setItem("authenticated", "true");
+sessionStorage.setItem("loginTime", Date.now());
+
+
+            // redirect
+            window.location.replace("first.html");
+        } else {
+            document.getElementById("error").textContent =
+                "Incorrect password";
+        }
+    }
+</script>
+
+</body>
+</html>
