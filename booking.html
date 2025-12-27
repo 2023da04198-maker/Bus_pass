@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bus Pass Details</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e6f4fb;
+}
+
+/* MODAL CONTAINER */
+.modal {
+    width: 95%;
+    max-width: 420px;
+    margin: 30px auto;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    overflow: hidden;
+}
+
+/* HEADER */
+.modal-header {
+    background: linear-gradient(to right, #11c9f5, #0b67e3);
+    color: white;
+    padding: 14px 16px;
+    font-size: 18px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header span strong {
+    font-weight: 700;
+}
+
+.close-btn {
+    font-size: 22px;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+/* FILTER BAR */
+.filter-bar {
+    display: flex;
+    gap: 10px;
+    padding: 12px;
+    align-items: center;
+}
+
+.filter-bar input {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 14px;
+    border: 4px solid #666;
+}
+
+.filter-bar button {
+    background: #35b44a;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* TABLE */
+.table-wrapper {
+    padding: 0 10px 15px 10px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+thead th {
+    background: #0d7aa8;
+    color: white;
+    padding: 8px;
+    border: 1px solid #0a5f82;
+}
+
+tbody td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #bdbdbd;
+}
+
+/* ALTERNATE ROW COLOR */
+tbody tr:nth-child(even) {
+    background: #cfcfcf;
+}
+
+/* ICON COLORS */
+.status-ok {
+    color: green;
+    font-size: 20px;
+ text-shadow:
+        1px 0 0 currentColor,
+       -1px 0 0 currentColor;
+}
+
+.status-no {
+    color: red;
+    font-size: 20px;
+ text-shadow:
+        1px 0 0 currentColor,
+       -1px 0 0 currentColor;
+}
+
+.action-x {
+    color: red;
+    font-size: 20px;
+    cursor: pointer;
+ text-shadow:
+        1px 0 0 currentColor,
+       -1px 0 0 currentColor;
+}
+</style>
+</head>
+
+<body>
+
+<div class="modal">
+
+    <!-- HEADER -->
+    <div class="modal-header">
+        <span>Bus Pass Details [ <strong>Patel Rohan - 46263482</strong> ]</span>
+        <i class="fa-solid fa-xmark close-btn"></i>
+    </div>
+
+    <!-- FILTER -->
+    <div class="filter-bar">
+        <input type="text" placeholder="DD/MM/YYYY">
+        <button>Save</button>
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Shift</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>04-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+                <tr>
+                    <td>08-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+                <tr>
+                    <td>11-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+                <tr>
+                    <td>12-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+                <tr>
+                    <td>18-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-xmark status-no"></i></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>24-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+<tr>
+                    <td>29-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+<tr>
+                    <td>30-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+<tr>
+                    <td>31-Dec</td>
+                    <td class="shift-cell"></td>
+                    <td><i class="fa-solid fa-check status-ok"></i></td>
+                    <td><i class="fa-solid fa-xmark action-x"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const shift = sessionStorage.getItem("shift") || "--";
+
+    document.querySelectorAll(".shift-cell").forEach(cell => {
+        cell.innerText = shift;
+    });
+});
+</script>
+
+</body>
+</html>
