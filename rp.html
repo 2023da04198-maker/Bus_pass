@@ -215,7 +215,7 @@ html, body {
     <a href="#"><i class="fa-solid fa-clock-rotate-left"></i></i> View Roster</a>
     <a href="#"><i class="fa-solid fa-clock-rotate-left"></i></i> Roster History</a>
     <a href="#"><i class="fa-solid fa-clock-rotate-left"></i></i> Feedback Detail</a>
-    <a href="#"><i class="fa-solid fa-list"></i> Bus Pass Booking</a>
+    <a href="#" onclick="openBusPassDetails()"><i class="fa-solid fa-list"></i> Bus Pass Booking</a>
     <a href="#"><i class="fa-solid fa-bus"></i> Buss Pass List</a>
     <a href="#"><i class="fa-solid fa-bus"></i> Bus Pass History</a>
     <a href="#"><i class="fa-solid fa-bus"></i> Request For New Route</a>
@@ -311,6 +311,18 @@ function toggleMenu() {
 function logout() {
     sessionStorage.clear();
 }
+
+function openBusPassDetails() {
+    /* Example: take shift from rp.html display */
+    const shiftText = document.getElementById("shiftField")?.innerText || "--";
+
+    /* Save shift for next page */
+    sessionStorage.setItem("shift", shiftText);
+
+    /* Navigate */
+    window.location.href = "booking.html";
+}
+
 </script>
 
 </body>
