@@ -315,9 +315,12 @@ function logout() {
 function openBusPassDetails() {
     /* Example: take shift from rp.html display */
     const shiftText = document.getElementById("shiftField")?.innerText || "--";
+    const nameText = document.getElementById("empName")?.innerText || "--";
 
     /* Save shift for next page */
     sessionStorage.setItem("shift", shiftText);
+    sessionStorage.setItem("name", nameText);
+    
 
     /* Navigate */
     window.location.href = "booking.html";
