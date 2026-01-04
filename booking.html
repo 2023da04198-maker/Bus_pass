@@ -143,7 +143,7 @@ transform: scaleX(0.8);
 
     <!-- HEADER -->
     <div class="modal-header">
-        <span>Bus Pass Details [ <strong>Patel Rohan - 46263482</strong> ]</span>
+        <span>Bus Pass Details [ <strong><td class="name-cell"></td> - 46263482</strong> ]</span>
         <i class="fa-solid fa-xmark close-btn"></i>
     </div>
 
@@ -228,9 +228,13 @@ transform: scaleX(0.8);
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const shift = sessionStorage.getItem("shift") || "--";
+    const shift = sessionStorage.getItem("name") || "--";
 
     document.querySelectorAll(".shift-cell").forEach(cell => {
         cell.innerText = shift;
+    });
+    document.querySelectorAll(".name-cell").forEach(cell => {
+        cell.innerText = name;
     });
 });
 </script>
