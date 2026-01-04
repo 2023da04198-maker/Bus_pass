@@ -228,7 +228,7 @@ transform: scaleX(0.8);
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const shift = sessionStorage.getItem("shift") || "--";
-    const shift = sessionStorage.getItem("name") || "--";
+    const name = sessionStorage.getItem("name") || "--";
 
     document.querySelectorAll(".shift-cell").forEach(cell => {
         cell.innerText = shift;
