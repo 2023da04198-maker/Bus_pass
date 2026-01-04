@@ -316,10 +316,12 @@ function openBusPassDetails() {
     /* Example: take shift from rp.html display */
     const shiftText = document.getElementById("shiftField")?.innerText || "--";
     const nameText = document.getElementById("empName")?.innerText || "--";
+    const idText = document.getElementById("empIdField")?.innerText || "--";
 
     /* Save shift for next page */
     sessionStorage.setItem("shift", shiftText);
     sessionStorage.setItem("name", nameText);
+    sessionStorage.setItem("id", nameText);
     
 
     /* Navigate */
