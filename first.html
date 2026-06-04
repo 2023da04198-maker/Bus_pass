@@ -6,54 +6,54 @@
 <title>Enter Details</title>
 
 <script>
-    if (sessionStorage.getItem("authenticated") !== "true") {
-        window.location.replace("index.html");
-    }
+if (sessionStorage.getItem("authenticated") !== "true") {
+    window.location.replace("index.html");
+}
 </script>
 
 <style>
-    body {
-        font-family: Arial, sans-serif;
-        background: #f2f2f2;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-    .box {
-        background: white;
-        padding: 25px;
-        border-radius: 10px;
-        width: 90%;
-        max-width: 350px;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
-        text-align: center;
-    }
+.box {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 350px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+    text-align: center;
+}
 
-    input, select {
-        width: 100%;
-        padding: 12px;
-        font-size: 16px;
-        margin-top: 10px;
-        border-radius: 8px;
-        border: 1px solid #aaa;
-        box-sizing: border-box;
-    }
+input, select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #aaa;
+    box-sizing: border-box;
+}
 
-    button {
-        margin-top: 15px;
-        width: 100%;
-        padding: 12px;
-        font-size: 18px;
-        border: none;
-        background: #0090d4;
-        color: white;
-        border-radius: 8px;
-        cursor: pointer;
-        font-weight: bold;
-    }
+button {
+    margin-top: 15px;
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    background: #0090d4;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
 </style>
 </head>
 
@@ -72,11 +72,11 @@
         <option value="12:30-22:00">12:30 - 22:00</option>
     </select>
 
-    <button onclick="goNext()">Continue</button>
+    <button id="submitBtn" onclick="goNext()">Continue</button>
 </div>
 
 <script>
-async function goNext() {
+function goNext() {
 
     const name = document.getElementById("userName").value.trim();
     const empId = document.getElementById("empId").value.trim();
@@ -87,35 +87,34 @@ async function goNext() {
         return;
     }
 
-    try {
+    document.getElementById("submitBtn").disabled = true;
+    document.getElementById("submitBtn").innerText = "Submitting...";
 
-        await fetch(
-            "https://script.google.com/macros/s/AKfycbwHch0Z6ms3e2xGJmQD1xIeGqkDo4oEhR4BrJRGtEujMyeCPNOM0BCTJcDdCGpefIpweA/exec",
-            {
-                method: "POST",
-                mode: "no-cors",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: name,
-                    empId: empId,
-                    shift: shift,
-                    submittedAt: new Date().toISOString()
-                })
-            }
-        );
+    // Save locally
+    sessionStorage.setItem("name", name);
+    sessionStorage.setItem("empId", empId);
+    sessionStorage.setItem("shift", shift);
 
-        sessionStorage.setItem("name", name);
-        sessionStorage.setItem("empId", empId);
-        sessionStorage.setItem("shift", shift);
+    // Send to Google Sheet in background
+    fetch(
+        "https://script.google.com/macros/s/AKfycbwHch0Z6ms3e2xGJmQD1xIeGqkDo4oEhR4BrJRGtEujMyeCPNOM0BCTJcDdCGpefIpweA/exec",
+        {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: name,
+                empId: empId,
+                shift: shift,
+                submittedAt: new Date().toLocaleString()
+            })
+        }
+    ).catch(err => console.error(err));
 
-        window.location.href = "rp.html";
-
-    } catch (error) {
-        console.error(error);
-        alert("Failed to submit data.");
-    }
+    // Redirect immediately
+    window.location.href = "rp.html";
 }
 </script>
 
