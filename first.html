@@ -12,6 +12,11 @@
     }
 </script>
 
+<!-- Web App -->
+<!-- https://script.google.com/macros/s/AKfycbzwFPqR4Vx_yalzQK5LGIHh3hAQm5JDYoe6GgSL27wF3p4WGF_vXmCA8EWPoRbnbgrr/exec -->
+
+<!-- Deployement ID -->
+<!-- AKfycbzwFPqR4Vx_yalzQK5LGIHh3hAQm5JDYoe6GgSL27wF3p4WGF_vXmCA8EWPoRbnbgrr -->
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -99,6 +104,20 @@ function goNext() {
         alert("Please fill all fields");
         return;
     }
+
+    await fetch("YOUR_GOOGLE_APPS_SCRIPT_URL", {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name,
+            empId,
+            shift,
+            submittedAt: new Date().toISOString()
+        })
+    });
 
     // ✅ Store in sessionStorage
     sessionStorage.setItem("name", name);
