@@ -5,18 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Enter Details</title>
 
-<!-- 🔐 SESSION CHECK -->
 <script>
     if (sessionStorage.getItem("authenticated") !== "true") {
         window.location.replace("index.html");
     }
 </script>
 
-<!-- Web App -->
-<!-- https://script.google.com/a/macros/wilp.bits-pilani.ac.in/s/AKfycbwHch0Z6ms3e2xGJmQD1xIeGqkDo4oEhR4BrJRGtEujMyeCPNOM0BCTJcDdCGpefIpweA/exec -->
-
-<!-- Deployement ID -->
-<!-- AKfycbwHch0Z6ms3e2xGJmQD1xIeGqkDo4oEhR4BrJRGtEujMyeCPNOM0BCTJcDdCGpefIpweA -->
 <style>
     body {
         font-family: Arial, sans-serif;
@@ -45,6 +39,7 @@
         margin-top: 10px;
         border-radius: 8px;
         border: 1px solid #aaa;
+        box-sizing: border-box;
     }
 
     button {
@@ -67,8 +62,8 @@
 <div class="box">
     <h2>Enter Your Details</h2>
 
-    <input type="text" id="userName" placeholder="Enter Name" />
-    <input type="text" id="empId" placeholder="Enter Employee ID" />
+    <input type="text" id="userName" placeholder="Enter Name">
+    <input type="text" id="empId" placeholder="Enter Employee ID">
 
     <select id="shift">
         <option value="">Select Shift</option>
@@ -77,57 +72,50 @@
         <option value="12:30-22:00">12:30 - 22:00</option>
     </select>
 
-    <!-- <select id="route">
-        <option value="">Select Route</option>
-        <option value="VASAI">VASAI</option>
-        <option value="BANDRA">BANDRA</option>
-    </select> -->
-
-    <!-- <select id="node">
-        <option value="">Select Nodal Point</option>
-        <option value="Bhabola">Bhabola</option>
-        <option value="Bahar Cinema">Bahar Cinema (Near Sagar Hotel)</option>
-    </select> -->
-
     <button onclick="goNext()">Continue</button>
 </div>
 
 <script>
-function goNext() {
-    const name  = document.getElementById("userName").value.trim();
+async function goNext() {
+
+    const name = document.getElementById("userName").value.trim();
     const empId = document.getElementById("empId").value.trim();
     const shift = document.getElementById("shift").value;
-    // const route = document.getElementById("route").value;
-    // const node  = document.getElementById("node").value;
 
     if (!name || !empId || !shift) {
         alert("Please fill all fields");
         return;
     }
 
-    await fetch("https://script.google.com/a/macros/wilp.bits-pilani.ac.in/s/AKfycbwHch0Z6ms3e2xGJmQD1xIeGqkDo4oEhR4BrJRGtEujMyeCPNOM0BCTJcDdCGpefIpweA/exec", {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            name,
-            empId,
-            shift,
-            submittedAt: new Date().toISOString()
-        })
-    });
+    try {
 
-    // ✅ Store in sessionStorage
-    sessionStorage.setItem("name", name);
-    sessionStorage.setItem("empId", empId);
-    sessionStorage.setItem("shift", shift);
-    // sessionStorage.setItem("route", route);
-    // sessionStorage.setItem("node", node);
+        await fetch(
+            "https://script.google.com/macros/s/AKfycbwHch0Z6ms3e2xGJmQD1xIeGqkDo4oEhR4BrJRGtEujMyeCPNOM0BCTJcDdCGpefIpweA/exec",
+            {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    empId: empId,
+                    shift: shift,
+                    submittedAt: new Date().toISOString()
+                })
+            }
+        );
 
-    // ➡️ Go to bus pass page
-    window.location.href = "rp.html";
+        sessionStorage.setItem("name", name);
+        sessionStorage.setItem("empId", empId);
+        sessionStorage.setItem("shift", shift);
+
+        window.location.href = "rp.html";
+
+    } catch (error) {
+        console.error(error);
+        alert("Failed to submit data.");
+    }
 }
 </script>
 
